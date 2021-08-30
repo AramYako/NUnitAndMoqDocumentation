@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Moq;
 using NUnit.Framework;
 using TestableCodeDemos.Module2.Shared;
@@ -6,6 +7,7 @@ using TestableCodeDemos.Module2.Shared;
 namespace TestableCodeDemos.Module2.Easy
 {
     [TestFixture]
+    [Category("Print commands")]
     public class PrintInvoiceCommandTests
     {
         private PrintInvoiceCommand _command;
@@ -46,33 +48,24 @@ namespace TestableCodeDemos.Module2.Easy
         }
 
         [Test]
-        public void TestExecuteShouldPrintInvoiceNumber()
+        public void Execute_VerifyMethodInvokedOnce_MethodIsInvokedOnce()
         {
             _command.Execute(InvoiceId);
 
+            //Verify that method is invoked once with paramters
             _mockPrinter
                 .Verify(p => p.WriteLine("Invoice ID: 1"),
                     Times.Once);
         }
 
         [Test]
-        public void TestExecuteShouldPrintTotalPrice()
+        public void Execute_VerifyMethodInvokedOnce_MethodIsInvokedExactlyThreeTimes()
         {
             _command.Execute(InvoiceId);
 
             _mockPrinter
-                .Verify(p => p.WriteLine("Total: $1.23"),
-                    Times.Once);
-        }
-
-        [Test]
-        public void TestExecuteShouldPrintTodaysDate()
-        {
-            _command.Execute(InvoiceId);
-
-            _mockPrinter
-                .Verify(p => p.WriteLine("Printed: 2/3/2001"),
-                    Times.Once);
+                .Verify(p => p.WriteLine(It.IsAny<string>()),
+                    Times.Exactly(3));
         }
     }
 }

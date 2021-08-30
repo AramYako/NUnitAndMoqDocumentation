@@ -9,7 +9,7 @@ namespace TestableCodeDemos.Module2.Easy
         private readonly IDatabase _database;
         private readonly IPrinter _printer;
         private readonly IDateTimeWrapper _dateTime;
-
+        public int count = 0; 
         public PrintInvoiceCommand(
             IDatabase database,
             IPrinter printer,
@@ -31,6 +31,8 @@ namespace TestableCodeDemos.Module2.Easy
             var dateTime = _dateTime.GetNow();
 
             _printer.WriteLine("Printed: " + dateTime.ToShortDateString());
+
+            count++;
         }
     }
 }

@@ -1,0 +1,8 @@
+﻿{
+  "Tips-1": "Dont use the word: new in your code",
+  "Tips-2": "Use dependency injection",
+  "Tips-3": "Construction injection is good for unit testing",
+  "Tips-4": "No logic in Constructor",
+  "Tips-5":  "Test should be isolated environment, so no shared environment"
+
+}

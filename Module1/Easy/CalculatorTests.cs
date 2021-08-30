@@ -6,6 +6,7 @@ using NUnit.Framework;
 namespace TestableCodeDemos.Module1.Easy
 {
     [TestFixture]
+    [Category("Calculator Test")]
     public class CalculatorTests
     {
         private Calculator _calculator;
@@ -17,11 +18,18 @@ namespace TestableCodeDemos.Module1.Easy
         }
 
         [Test]
-        public void TestGetTotalShouldReturnTotalPrice()
+        [TestCase(1.00, 2.00, 0.50)]
+        [TestCase(1.00, 2.00, 0.50)]
+        [TestCase(1.00, 2.00, 0.50)]
+        public void GetTotal_CalculateSub_GetCorrectSumBack(decimal parts, decimal service, decimal discount)
         {
-            var result = _calculator.GetTotal(1.00m, 2.00m, 0.50m);
+            var result = _calculator.GetTotal(parts, service, discount);
 
             Assert.That(result, Is.EqualTo(2.50m));
+            Assert.That(result > 0, Is.True);
+            Assert.That(result > 0, Is.Not.False);
+            Assert.That(result, Is.GreaterThan(0));
+
         }
     }
 }

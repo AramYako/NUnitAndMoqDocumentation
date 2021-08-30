@@ -1,0 +1,10 @@
+{
+  "Module-1": "Setup, TestFixture, Category, Test, TestCase, Assert That (Equal, Is.True, Is.Not.False, Is.GreaterThan)",
+  "Module-2": "AutoMoq, Setup, Test, Category, Verify, Verify Once, Verify.Exactly",
+  "Module-3": "Verify.Once, VerifyNever, TestCase",
+  "Module-4": "AutoMoq",
+  "Module-5": "Display in code a bad practice that use Singelton",
+  "Module-6":  "ModifyProperty, ExpectedResult, track proeprty, ProeprtyGet, PropertSet",
+
+  "ToDo":"To Implement verify if property is set, property get, strict mode"
+}

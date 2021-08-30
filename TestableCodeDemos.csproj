@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,6 +12,8 @@
     <AssemblyName>TestableCodeDemos</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,7 +86,6 @@
     <Compile Include="Module1\Easy\Calculator.cs" />
     <Compile Include="Module1\Easy\CalculatorTests.cs" />
     <Compile Include="Module1\Easy\Program.cs" />
-    <Compile Include="Module1\Hard\Program.cs" />
     <Compile Include="Module2\Easy\DateTimeWrapper.cs" />
     <Compile Include="Module2\Easy\IDateTimeWrapper.cs" />
     <Compile Include="Module2\Easy\PrintInvoiceCommandTestsWithAutoMoqer.cs" />
@@ -143,31 +145,28 @@
     <Compile Include="Module5\Shared\IInvoiceWriter.cs" />
     <Compile Include="Module5\Shared\InvoiceWriter.cs" />
     <Compile Include="Module5\Shared\UserNotAuthorizedException.cs" />
-    <Compile Include="Module6\Hard\PrintOrEmailInvoiceCommandTests.cs" />
-    <Compile Include="Module6\Shared\EmailAddressIsBlankException.cs" />
-    <Compile Include="Module6\Easy\EmailInvoiceCommand.cs" />
-    <Compile Include="Module6\Easy\EmailInvoiceCommandTests.cs" />
-    <Compile Include="Module6\Shared\IEmailValidator.cs" />
-    <Compile Include="Module6\Shared\ISecurity.cs" />
-    <Compile Include="Module6\Easy\PrintInvoiceCommand.cs" />
-    <Compile Include="Module6\Easy\PrintInvoiceCommandTests.cs" />
-    <Compile Include="Module6\Shared\Security.cs" />
-    <Compile Include="Module6\Shared\IInvoiceEmailer.cs" />
-    <Compile Include="Module6\Hard\PrintOrEmailInvoiceCommand.cs" />
-    <Compile Include="Module6\Shared\Database.cs" />
-    <Compile Include="Module6\Shared\IDatabase.cs" />
-    <Compile Include="Module6\Shared\IInvoiceWriter.cs" />
-    <Compile Include="Module6\Shared\Invoice.cs" />
-    <Compile Include="Module6\Shared\InvoiceWriter.cs" />
-    <Compile Include="Module6\Shared\UserNotAuthorizedException.cs" />
+    <Compile Include="Module6\CreditScore.cs" />
+    <Compile Include="Module6\CreditScoreTest.cs" />
+    <Compile Include="Module6\ICreditScore.cs" />
+    <Compile Include="Module6\LoadProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ModuleDescription.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tips.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit3TestAdapter.4.0.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
